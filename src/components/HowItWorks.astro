@@ -1,0 +1,71 @@
+---
+import { Picture } from "astro:assets";
+import enUSD from "@assets/enUSD.png";
+---
+
+<section id="how-it-works" class="max-w-3xl mx-auto px-8 py-32">
+  <h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">
+    How it works
+  </h2>
+  <p class="text-base font-light text-neutral-800 text-center mb-16">
+    Three steps to borrow stablecoins against your ETH.
+  </p>
+
+  <div class="flex flex-col items-center gap-4">
+    <!-- Card 1 — Deposit -->
+    <div class="border border-neutral-900 rounded-xl bg-white w-full max-w-2xl border-l-4 border-l-blue-500 flex overflow-hidden">
+      <div class="w-24 shrink-0 bg-blue-50 flex items-center justify-center">
+        <img src="/eth.svg" alt="ETH" class="w-10 h-10" />
+      </div>
+      <div class="px-8 py-7 flex-1">
+        <div class="flex items-baseline justify-between mb-2">
+          <h3 class="text-lg font-light tracking-tight">Deposit ETH</h3>
+          <span class="text-xs font-light text-neutral-800">01</span>
+        </div>
+        <p class="text-sm font-light text-neutral-800">
+         Lock your ETH as collateral in a CDP. Your ETH stays in your custody and on-chain.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 2 — Borrow -->
+    <div class="border border-neutral-900 rounded-xl bg-white w-full max-w-2xl border-l-4 border-l-emerald-500 flex overflow-hidden">
+      <div class="w-24 shrink-0 bg-emerald-50 flex items-center justify-center">
+        <Picture
+          src={enUSD}
+          formats={["avif", "webp"]}
+          alt="enUSD Icon"
+          quality={28}
+          height={40}
+          densities={[1.5, 2]}
+          class="block shrink-0 w-10 h-10 rounded-full"
+        />
+      </div>
+      <div class="px-8 py-7 flex-1">
+        <div class="flex items-baseline justify-between mb-2">
+          <h3 class="text-lg font-light tracking-tight">Borrow stablecoins</h3>
+          <span class="text-xs font-light text-neutral-800">02</span>
+        </div>
+        <p class="text-sm font-light text-neutral-800">
+          Mint ENNI stablecoins like enUSD or enCHF against your collateral. 0% interest. No hidden fees.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 3 — Repay -->
+    <div class="border border-neutral-900 rounded-xl bg-white w-full max-w-2xl border-l-4 border-l-amber-500 flex overflow-hidden">
+      <div class="w-24 shrink-0 bg-amber-50 flex items-center justify-center">
+        <img src="/repay.svg" alt="Repay Icon" class="w-10 h-10" />
+      </div>
+      <div class="px-8 py-7 flex-1">
+        <div class="flex items-baseline justify-between mb-2">
+          <h3 class="text-lg font-light tracking-tight">Repay anytime</h3>
+          <span class="text-xs font-light text-neutral-800">03</span>
+        </div>
+        <p class="text-sm font-light text-neutral-800">
+          No lockups, no schedules. Repay anytime and withdraw your ETH whenever you like.
+       </p>
+      </div>
+    </div>
+  </div>
+</section>

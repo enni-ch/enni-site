@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import hashlock from "@assets/hashlock.svg";
+import blockbite from "@assets/blockbite.svg";
+---
+
+<section id="audits" class="max-w-4xl mx-auto px-8 py-32 text-center">
+  <h2 class="text-3xl sm:text-4xl font-light tracking-tight mb-4">Audits & Security</h2>
+  <p class="text-base font-light text-neutral-800 mb-16 max-w-lg mx-auto">
+    With rigorous internal testing and community inspection. Also audited by two independent firms.
+</p>
+
+<!-- Logos side by side -->
+<div class="flex items-center justify-center gap-12 mb-16">
+  <div class="flex flex-col items-center gap-3">
+    <a href="#" rel="noopener noreferrer" class="cursor-pointer hover:opacity-70 transition-opacity">
+      <Image
+        src={hashlock}
+        alt="Hashlock"
+        height={48}
+        class="h-12 w-auto"
+      />
+    </a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-xs font-light text-neutral-800 hover:text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors mt-4">View report</a>
+  </div>
+  <div class="flex flex-col items-center gap-3">
+    <a href="#" rel="noopener noreferrer" class="cursor-pointer hover:opacity-70 transition-opacity">
+      <Image
+        src={blockbite}
+        alt="Blockbite"
+        height={48}
+        class="h-12 w-auto"
+      />
+    </a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-xs font-light text-neutral-800 hover:text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors mt-4">View report</a>
+  </div>
+</div>
+
+  <!-- Security tags -->
+  <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+    <span class="text-xs font-light text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full">Immutable contracts</span>
+    <span class="text-xs font-light text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full">Ownership renounced</span>
+    <span class="text-xs font-light text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full">Open source</span>
+    <span class="text-xs font-light text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full">Verified on Etherscan</span>
+    <span class="text-xs font-light text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full">No admin keys</span>
+  </div>
+
+  <p class="text-sm font-light text-neutral-800 leading-relaxed max-w-lg mx-auto mb-8">
+    All contract source code is public on GitHub and verified on Etherscan. Ownership has been renounced permanently.
+  </p>
+
+  <div class="flex items-center justify-center gap-6">
+    <a href="https://github.com/enni-ch/contracts" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors inline-flex items-center gap-1.5">
+      GitHub
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="pointer-events-none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-colors inline-flex items-center gap-1.5">
+      Etherscan
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="pointer-events-none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>

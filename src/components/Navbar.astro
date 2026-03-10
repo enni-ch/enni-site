@@ -1,0 +1,110 @@
+---
+// Navbar
+import { Picture } from "astro:assets";
+import Enni from "@assets/Enni.png";
+---
+
+<nav id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-transparent transition-all duration-300" aria-label="Main navigation">
+  <div id="navbar-inner" class="max-w-2xl mx-auto px-6 flex items-center justify-between transition-all duration-300 h-20">
+    <a href="#home" class="cursor-pointer no-underline flex items-center gap-2.5" aria-label="ENNI homepage">
+      <Picture
+        src={Enni}
+        formats={['avif', 'webp']}
+        alt="ENNI logo"
+        quality={28}
+        height={32}
+        densities={[1.5, 2]}
+        class="block w-8 h-8 rounded-full"
+      />
+      <span class="text-sm font-normal tracking-tight">ENNI</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden sm:flex items-center gap-7">
+      <a href="#products" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline">Products</a>
+      <a href="#community" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline">Community</a>
+      <a href="#calculator" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline">Calculator</a>
+      <a href="https://testnet.enni.ch" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-sm font-normal text-white bg-neutral-900 hover:bg-neutral-700 px-5 py-2 rounded-lg transition-colors no-underline">
+        Enter App
+      </a>
+    </div>
+
+    <!-- Mobile: Enter App + hamburger -->
+    <div class="flex sm:hidden items-center gap-3">
+      <a href="https://testnet.enni.ch" target="_blank" rel="noopener noreferrer" class="cursor-pointer text-xs font-normal text-white bg-neutral-900 hover:bg-neutral-700 px-4 py-2 rounded-lg transition-colors no-underline">
+        Enter App
+      </a>
+      <button
+        id="menu-toggle"
+        class="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg border border-neutral-200 hover:bg-neutral-50 transition-colors"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden sm:hidden border-t border-neutral-200 bg-white/95 backdrop-blur-xl"
+    role="menu"
+  >
+    <div class="max-w-2xl mx-auto px-6 py-4 flex flex-col gap-3">
+      <a href="#products" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline py-2" role="menuitem">Products</a>
+      <a href="#community" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline py-2" role="menuitem">Community</a>
+      <a href="#calculator" class="cursor-pointer text-sm font-light text-neutral-800 hover:text-neutral-900 transition-colors no-underline py-2" role="menuitem">Calculator</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById("navbar") as HTMLElement;
+  const inner = document.getElementById("navbar-inner") as HTMLElement;
+  const menuToggle = document.getElementById("menu-toggle") as HTMLButtonElement;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+  const iconOpen = document.getElementById("menu-icon-open") as HTMLElement;
+  const iconClose = document.getElementById("menu-icon-close") as HTMLElement;
+
+  // Mobile menu toggle
+  menuToggle.addEventListener("click", () => {
+    const isOpen = !mobileMenu.classList.contains("hidden");
+    mobileMenu.classList.toggle("hidden");
+    iconOpen.classList.toggle("hidden");
+    iconClose.classList.toggle("hidden");
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  // Close menu when clicking a link
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Scroll behavior
+  window.addEventListener("scroll", () => {
+    const current = window.scrollY;
+    if (current > 50) {
+      navbar.classList.remove("border-transparent");
+      navbar.classList.add("border-neutral-200/60");
+      inner.classList.remove("h-20");
+      inner.classList.add("h-14");
+    } else {
+      navbar.classList.remove("border-neutral-200/60");
+      navbar.classList.add("border-transparent");
+      inner.classList.remove("h-14");
+      inner.classList.add("h-20");
+    }
+  });
+</script>

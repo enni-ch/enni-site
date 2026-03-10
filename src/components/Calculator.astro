@@ -1,0 +1,318 @@
+---
+// Calculator Section
+import { Picture } from "astro:assets";
+import Enni from "@assets/Enni.png";
+---
+
+<section id="calculator" class="max-w-4xl mx-auto px-8 py-32">
+  <h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">How much do you save?</h2>
+  <p class="text-base font-light text-neutral-800 text-center mb-16 max-w-lg mx-auto">
+    Other protocols charge 3–5% interest. ENNI charges nothing. See the difference.
+  </p>
+
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Big savings number -->
+    <div class="text-center mb-12 bg-emerald-50 border border-emerald-200 rounded-2xl py-10 px-6">
+      <p class="text-xs font-light text-emerald-700 mb-2 uppercase tracking-widest">You save with ENNI</p>
+      <p id="big-savings" class="text-5xl sm:text-6xl font-extralight tracking-tight text-emerald-800">$0</p>
+      <p id="savings-subtitle" class="text-sm font-light text-emerald-700 mt-2">per year in interest</p>
+    </div>
+
+    <!-- Sliders -->
+    <div class="border border-neutral-900 rounded-xl p-8 space-y-8">
+
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <label for="eth-amount" class="text-sm font-light text-neutral-800">How much ETH do you want to deposit?</label>
+          <span id="eth-display" class="text-sm font-normal text-neutral-900">10 ETH</span>
+        </div>
+        <input
+          id="eth-amount"
+          type="range"
+          min="1"
+          max="100"
+          value="10"
+          class="w-full accent-emerald-600 cursor-pointer"
+        />
+        <div class="flex justify-between text-xs font-light text-neutral-800 mt-1">
+          <span>1 ETH</span>
+          <span>100 ETH</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <label for="ltv-slider" class="text-sm font-light text-neutral-800">How much do you want to borrow?</label>
+          <span id="ltv-display" class="text-sm font-normal text-neutral-900">50%</span>
+        </div>
+        <input
+          id="ltv-slider"
+          type="range"
+          min="10"
+          max="85"
+          value="50"
+          class="w-full accent-emerald-600 cursor-pointer"
+        />
+        <div class="flex justify-between text-xs font-light text-neutral-800 mt-1">
+          <span>10% LTV (safe)</span>
+          <span>85% LTV (max)</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <label for="duration" class="text-sm font-light text-neutral-800">How long do you plan to borrow?</label>
+          <span id="duration-display" class="text-sm font-normal text-neutral-900">12 months</span>
+        </div>
+        <input
+          id="duration"
+          type="range"
+          min="1"
+          max="60"
+          value="12"
+          class="w-full accent-emerald-600 cursor-pointer"
+        />
+        <div class="flex justify-between text-xs font-light text-neutral-800 mt-1">
+          <span>1 month</span>
+          <span>5 years</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Breakdown -->
+    <div class="mt-5 border border-neutral-200 rounded-xl p-8">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800">ETH price</span>
+          <span id="eth-price" class="font-normal text-neutral-900">Loading...</span>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800">Your collateral</span>
+          <span id="collateral-value" class="font-normal text-neutral-900">—</span>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800">You borrow</span>
+          <span id="borrow-amount" class="font-normal text-neutral-900">—</span>
+        </div>
+        <div class="h-px bg-neutral-200"></div>
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800">Liquidation price</span>
+          <span id="liq-price" class="font-normal text-neutral-900">—</span>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800">Buffer before liquidation</span>
+          <span id="liq-buffer" class="font-normal text-neutral-900">—</span>
+        </div>
+        <div class="h-px bg-neutral-200"></div>
+
+        <!-- ENNI -->
+        <div class="flex items-center justify-between text-sm bg-emerald-50 -mx-8 px-8 py-3">
+          <span class="font-normal text-emerald-800 inline-flex items-center gap-2">
+            <Picture
+              src={Enni}
+              formats={['avif', 'webp']}
+              alt="ENNI"
+              quality={28}
+              height={20}
+              densities={[1.5, 2]}
+              class="block w-5 h-5 rounded-full"
+            />
+            ENNI interest
+          </span>
+          <span class="font-normal text-emerald-700">$0</span>
+        </div>
+
+        <!-- Aave -->
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800 inline-flex items-center gap-2">
+            <img src="/aave.svg" alt="Aave" class="w-5 h-5 rounded" />
+            Aave would charge (~4%)
+          </span>
+          <span id="aave-cost" class="font-normal text-red-700">—</span>
+        </div>
+
+        <!-- Maker -->
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800 inline-flex items-center gap-2">
+            <img src="/maker.svg" alt="Maker" class="w-5 h-5 rounded" />
+            Maker would charge (~4%)
+          </span>
+          <span id="maker-cost" class="font-normal text-red-700">—</span>
+        </div>
+
+        <!-- Liquity -->
+        <div class="flex items-center justify-between text-sm">
+          <span class="font-light text-neutral-800 inline-flex items-center gap-2">
+            <img src="/liquity.svg" alt="Liquity" class="w-5 h-5 rounded" />
+            Liquity v2 would charge (~3.8%)
+          </span>
+          <span id="liquity-cost" class="font-normal text-red-700">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Min debt warning -->
+    <div id="min-debt-warning" class="hidden mt-4 text-center">
+      <p class="text-basez font-light text-amber-700">Minimum debt is 400 enUSD. Increase your deposit or LTV.</p>
+    </div>
+
+    <!-- Params -->
+    <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="text-center py-4 border border-neutral-200 rounded-xl">
+        <p class="text-lg font-light tracking-tight text-neutral-900">85%</p>
+        <p class="text-xs font-light text-neutral-800 mt-1">Max LTV</p>
+      </div>
+      <div class="text-center py-4 border border-neutral-200 rounded-xl">
+        <p class="text-lg font-light tracking-tight text-neutral-900">88%</p>
+        <p class="text-xs font-light text-neutral-800 mt-1">Liquidation</p>
+      </div>
+      <div class="text-center py-4 border border-neutral-200 rounded-xl">
+        <p class="text-lg font-light tracking-tight text-neutral-900">400</p>
+        <p class="text-xs font-light text-neutral-800 mt-1">Min debt</p>
+      </div>
+      <div class="text-center py-4 border border-neutral-200 rounded-xl">
+        <p class="text-lg font-light tracking-tight text-emerald-800">0%</p>
+        <p class="text-xs font-light text-neutral-800 mt-1">Borrow fee</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="text-xs font-light text-neutral-700 text-center mt-8 max-w-lg mx-auto">
+    *Simulation only. ETH price from CoinGecko may differ from on-chain oracle prices. Competitor rates are approximate averages and vary over time. Not financial advice.
+  </p>
+</section>
+
+<script>
+  const LIQ_LTV = 0.88;
+  const MIN_DEBT = 400;
+
+  let ethPrice = 0;
+
+  const ethAmountEl = document.getElementById("eth-amount") as HTMLInputElement;
+  const ethDisplayEl = document.getElementById("eth-display") as HTMLElement;
+  const ltvSliderEl = document.getElementById("ltv-slider") as HTMLInputElement;
+  const ltvDisplayEl = document.getElementById("ltv-display") as HTMLElement;
+  const durationEl = document.getElementById("duration") as HTMLInputElement;
+  const durationDisplayEl = document.getElementById("duration-display") as HTMLElement;
+  const ethPriceEl = document.getElementById("eth-price") as HTMLElement;
+  const collateralValueEl = document.getElementById("collateral-value") as HTMLElement;
+  const borrowAmountEl = document.getElementById("borrow-amount") as HTMLElement;
+  const liqPriceEl = document.getElementById("liq-price") as HTMLElement;
+  const liqBufferEl = document.getElementById("liq-buffer") as HTMLElement;
+  const aaveCostEl = document.getElementById("aave-cost") as HTMLElement;
+  const makerCostEl = document.getElementById("maker-cost") as HTMLElement;
+  const liquityCostEl = document.getElementById("liquity-cost") as HTMLElement;
+  const bigSavingsEl = document.getElementById("big-savings") as HTMLElement;
+  const savingsSubtitleEl = document.getElementById("savings-subtitle") as HTMLElement;
+  const minDebtWarningEl = document.getElementById("min-debt-warning") as HTMLElement;
+
+async function fetchPrices() {
+  const cached = sessionStorage.getItem("eth-price-cache");
+  if (cached) {
+    try {
+      const { price, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < 5 * 60 * 1000) {
+        ethPrice = price;
+        ethPriceEl.textContent = "$" + ethPrice.toLocaleString();
+        calculate();
+        return;
+      }
+    } catch {}
+  }
+
+  // Try CoinGecko
+  try {
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+    );
+    if (res.ok) {
+      const data = await res.json();
+      ethPrice = data.ethereum.usd;
+      sessionStorage.setItem("eth-price-cache", JSON.stringify({ price: ethPrice, timestamp: Date.now() }));
+      ethPriceEl.textContent = "$" + ethPrice.toLocaleString();
+      calculate();
+      return;
+    }
+  } catch {}
+
+  // Fallback: CryptoCompare
+  try {
+    const res = await fetch(
+      "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD"
+    );
+    if (res.ok) {
+      const data = await res.json();
+      ethPrice = data.USD;
+      sessionStorage.setItem("eth-price-cache", JSON.stringify({ price: ethPrice, timestamp: Date.now() }));
+      ethPriceEl.textContent = "$" + ethPrice.toLocaleString();
+      calculate();
+      return;
+    }
+  } catch {}
+
+  // Last resort: manual input
+  ethPrice = 0;
+  ethPriceEl.innerHTML = '<input id="manual-eth-price" type="number" placeholder="Enter ETH price" class="w-28 text-right text-sm font-normal text-neutral-900 border border-neutral-200 rounded px-2 py-1 outline-none" />';
+  const manualInput = document.getElementById("manual-eth-price") as HTMLInputElement;
+  manualInput.addEventListener("input", () => {
+    ethPrice = parseFloat(manualInput.value) || 0;
+    if (ethPrice > 0) calculate();
+  });
+}
+
+  function fmt(n: number): string {
+    return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function calculate() {
+    if (!ethPrice) return;
+
+    const ethAmount = parseInt(ethAmountEl.value);
+    const ltv = parseInt(ltvSliderEl.value) / 100;
+    const months = parseInt(durationEl.value);
+    const years = months / 12;
+
+    const collateralUsd = ethAmount * ethPrice;
+    const borrowUsd = collateralUsd * ltv;
+
+    const liqPrice = borrowUsd / (ethAmount * LIQ_LTV);
+    const bufferPercent = ((ethPrice - liqPrice) / ethPrice) * 100;
+
+    // Compound interest: cost = principal * ((1 + rate)^years - 1)
+    const aaveCost = borrowUsd * (Math.pow(1 + 0.04, years) - 1);
+    const makerCost = borrowUsd * (Math.pow(1 + 0.04, years) - 1);
+    const liquityCost = borrowUsd * (Math.pow(1 + 0.038, years) - 1);
+    const avgSavings = (aaveCost + makerCost) / 2;
+
+    ethDisplayEl.textContent = ethAmount + " ETH";
+    ltvDisplayEl.textContent = Math.round(ltv * 100) + "%";
+    durationDisplayEl.textContent = months + (months === 1 ? " month" : " months");
+
+    collateralValueEl.textContent = "$" + fmt(collateralUsd);
+    borrowAmountEl.textContent = fmt(borrowUsd) + " enUSD";
+    liqPriceEl.textContent = "$" + fmt(liqPrice);
+    liqBufferEl.textContent = fmt(bufferPercent) + "% drop before liquidation";
+
+    aaveCostEl.textContent = "$" + fmt(aaveCost);
+    makerCostEl.textContent = "$" + fmt(makerCost);
+    liquityCostEl.textContent = "$" + fmt(liquityCost);
+
+    bigSavingsEl.textContent = "$" + fmt(avgSavings);
+    savingsSubtitleEl.textContent = "saved over " + months + (months === 1 ? " month" : " months") + " vs ~4% interest";
+
+    if (borrowUsd < MIN_DEBT && borrowUsd > 0) {
+      minDebtWarningEl.classList.remove("hidden");
+    } else {
+      minDebtWarningEl.classList.add("hidden");
+    }
+  }
+
+  ethAmountEl.addEventListener("input", calculate);
+  ltvSliderEl.addEventListener("input", calculate);
+  durationEl.addEventListener("input", calculate);
+
+  fetchPrices();
+</script>
