@@ -1,0 +1,45 @@
+---
+title: "Stablecoins"
+section: "Protocol"
+order: 2
+---
+
+ENNI issues overcollateralized stablecoins pegged to fiat currencies. Each stablecoin is its own independent deployment with its own CDP, oracle, and collateral pool.
+
+## Currently Live
+
+| Stablecoin | Peg | Decimals | Direct Swap |
+|---|---|---|---|
+| enUSD | US Dollar | 6 | USDC, USDT |
+| enCHF | Swiss Franc | 6 | ZCHF |
+
+Both have no supply cap. Supply grows when people borrow or mint, and shrinks when they repay or redeem.
+
+## How They're Created
+
+There are two ways stablecoins enter circulation:
+
+**CDP borrowing.** Deposit WETH as collateral, borrow stablecoins against it at 0% interest. Stablecoins are minted fresh when borrowed and burned when repaid. Available for all currencies.
+
+**Direct Swap.** Deposit a backing stablecoin (USDC, USDT, or ZCHF) and receive the equivalent ENNI stablecoin at 1:1 value. No fee on minting. The deposited tokens stay in the contract and back future redemptions.
+
+## Redeeming
+
+Redeem ENNI stablecoins back to their backing tokens through Direct Swap at 1:1 value minus a 0.5% fee.
+
+For enUSD, the redemption fee is donated to the Rewards Vault as protocol revenue for ENNI stakers. For enCHF, the redemption fee is burned, making enCHF deflationary over time.
+
+Redemption is limited to what has been deposited. If 10M USDC was minted through Direct Swap but 0 USDT, you can only redeem to USDC.
+
+## Backing
+
+| Source | Collateral Ratio |
+|---|---|
+| CDP-minted | Minimum 117.6% in WETH (from 85% max LTV) |
+| Direct Swap minted | 100% in backing stablecoin (USDC, USDT, or ZCHF) |
+
+No stablecoin has fractional reserve or unbacked minting. Every unit in circulation is backed by either ETH collateral or stablecoin reserves sitting in a contract.
+
+## ZCHF and Decimal Scaling
+
+ZCHF (Frankencoin) uses 18 decimals while enCHF uses 6 decimals. The Direct Swap contract handles this automatically. 1 ZCHF (1e18) mints 1 enCHF (1e6). When redeeming, 1 enCHF returns 0.995 ZCHF after the 0.5% fee.

@@ -1,0 +1,46 @@
+---
+title: "Peg Stability"
+section: "Protocol"
+order: 3
+---
+
+ENNI stablecoins use three layers of peg defense. All of them are automatic and require no governance action.
+
+## 1. Direct Swap Floor and Ceiling
+
+Direct Swap creates hard bounds on the price.
+
+**Ceiling ($1.00 / 1.00 CHF).** If enUSD trades above $1 on a DEX, anyone can mint enUSD from USDC at 1:1 and sell it for a profit. Same logic applies to enCHF with ZCHF. This caps the upside.
+
+**Floor (~$0.995 / ~0.995 CHF).** If enUSD trades below $0.995, anyone can buy it cheap on a DEX and redeem through Direct Swap for $0.995 worth of USDC. The 0.5% fee sets the floor slightly below $1. Same applies to enCHF.
+
+This arbitrage is permissionless and instant. No one needs to coordinate it.
+
+## 2. Buyout Arbitrage
+
+When a stablecoin trades below peg, the buyout system creates additional buy pressure.
+
+Arbitrageurs buy the discounted stablecoin on a DEX and use it to buy out a borrower's WETH collateral at oracle price through the CDP. They pay a 4–9% premium to the borrower, but the discount from buying below peg makes the trade profitable.
+
+The worse the depeg, the more profitable the arbitrage, the stronger the buy pressure. This is self-correcting.
+
+## 3. Liquidation
+
+Positions that reach 88% LTV are liquidated. Liquidators need stablecoins to execute liquidations, which creates buy demand during stress periods. The debt they repay is burned, reducing supply.
+
+## During a Depeg
+
+All three layers compound. If enUSD drops to $0.97:
+
+- Direct Swap redeemers buy at $0.97, redeem at $0.995. Profit.
+- Buyout arbs buy at $0.97, buyout collateral at $1.00 oracle price. Profit.
+- Borrowers buy at $0.97 to repay $1.00 face value debt. Profit.
+- Supply shrinks from burns on every repayment and redemption.
+
+Every participant profits from fixing the depeg. The protocol doesn't need to do anything.
+
+## enUSD vs enCHF Peg Differences
+
+enUSD has a stronger hard floor because USDC and USDT are deep, liquid markets. Direct Swap redemption is always available as long as there are reserves.
+
+enCHF relies more on buyout arbitrage for peg recovery since ZCHF (Frankencoin) has less on-chain liquidity than USDC/USDT. The 0.5% redemption fee on enCHF is burned rather than donated, creating stronger deflationary pressure to compensate.

@@ -1,0 +1,53 @@
+---
+title: "Oracles"
+section: "Reference"
+order: 11
+---
+
+Each market has its own oracle instance. The oracle provides ETH pricing in the market's fiat currency to the CDP contract.
+
+## Dual Feed Design
+
+The oracle checks two price feeds in order and returns the first valid result:
+
+1. **Chainlink** (primary) for ETH/USD
+2. **RedStone** (fallback) for ETH/USD
+
+If both feeds are unavailable or stale, the oracle falls back to the last known good price stored in the contract.
+
+## Non-USD Markets
+
+For currencies other than USD, the oracle includes a translator feed. This is a Chainlink aggregator for the target currency's exchange rate against USD.
+
+For enCHF, the oracle takes the ETH/USD price and translates it through a Chainlink CHF/USD feed to derive the ETH/CHF price.
+
+If the translator feed goes stale, both base prices are rejected since they cannot be translated. This means the enCHF market can pause independently if the CHF/USD feed is unavailable, while the enUSD market continues operating normally.
+
+## Staleness Thresholds
+
+Each feed has its own staleness threshold. A price older than its threshold is rejected and the oracle moves to the next source.
+
+| Feed | Threshold |
+|---|---|
+| Chainlink ETH/USD | 6 hours |
+| RedStone ETH/USD | 24 hours |
+| Translator (CHF/USD) | 24 hours |
+
+The CDP enforces its own 24-hour maximum age independently. Even if the oracle returns a cached price, the CDP will reject it if the timestamp is too old.
+
+## Validation
+
+Every price read goes through validation before being accepted:
+
+- Price must be greater than zero
+- Timestamp must not be zero or in the future
+- Chainlink specific: roundId must be valid, answeredInRound must match
+- All external calls are wrapped in try/catch so a reverting feed is treated as unavailable, not as an error
+
+## No Deviation Check
+
+The oracle does not compare prices between Chainlink and RedStone. In volatile markets, one feed may update faster than the other. A deviation check could reject a valid price because the other feed hasn't caught up yet. In an immutable system, a rejected oracle means frozen liquidations and frozen withdrawals. Liveness is prioritized.
+
+## Price Format
+
+All prices are normalized to 18 decimals regardless of the source feed's native precision. The price represents fiat per ETH (e.g. $2,500/ETH = 2500e18).

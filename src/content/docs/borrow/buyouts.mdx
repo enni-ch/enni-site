@@ -1,0 +1,93 @@
+---
+title: "Buyouts & Liquidation"
+section: "Protocol"
+order: 5
+---
+
+ENNI uses two mechanisms to keep the system healthy: buyouts and liquidation. Buyouts are voluntary and compensate the borrower. Liquidation is the last resort.
+
+## Buyout System
+
+Anyone can buy out a portion of another user's CDP at any LTV below 88%. The buyer pays the debt plus a premium in stablecoins and receives the equivalent WETH collateral at oracle price. The borrower's debt is reduced and they earn the premium as claimable credit.
+
+**Example at 70% LTV:**
+
+```
+Position: 10 ETH collateral, 17,500 enUSD debt (ETH at $2,500)
+Buyer repays 5,000 enUSD
+
+Premium at 70% LTV: 6%
+Premium: 5,000 × 6% = 300 enUSD
+Buyer pays: 5,300 enUSD total
+Buyer receives: 5,000 / 2,500 = 2 ETH
+
+After:
+  Position: 8 ETH, 12,500 enUSD debt
+  Borrower earned: 300 enUSD premium credit
+```
+
+### Premium Rates
+
+Riskier positions have lower premiums to encourage clearing them first.
+
+| LTV Range | Premium |
+|---|---|
+| Below 60% | 9% |
+| 60% to 84.99% | 6% |
+| 85% to 87.99% | 4% |
+| 88% and above | Buyout blocked, use liquidation |
+
+### Why Buyouts Matter
+
+Buyouts are the primary peg recovery mechanism. When a stablecoin trades below peg, arbitrageurs buy it cheap on a DEX and use it to buy out collateral at oracle price. Even after the premium, the discount makes it profitable. This creates sustained buy pressure until the peg recovers.
+
+For borrowers, getting bought out is not a punishment. Your debt goes down, your LTV stays roughly the same, and you earn premium credit that you can claim anytime.
+
+### Rules
+
+- Remaining debt after a partial buyout must be at least 400 units or zero
+- Buyer cannot repay more than the total debt
+- Premium credit is claimable anytime through the app or via `claimPremium()` on the contract
+
+## Liquidation
+
+When a position reaches 88% LTV or above, it becomes liquidatable. Anyone can liquidate it by repaying some or all of the debt in stablecoins and receiving a proportional share of the collateral.
+
+**Example:**
+
+```
+Position: 5 ETH collateral, 10,000 enUSD debt
+ETH drops to $2,250 → LTV ≈ 88.9% (liquidatable)
+
+Liquidator repays 5,000 enUSD (half the debt)
+Collateral seized: 5 × (5,000 / 10,000) = 2.5 ETH
+Donation: 2.5 × 3% = 0.075 ETH → Rewards Vault
+Liquidator receives: 2.425 ETH (~$5,456 value)
+Liquidator profit: ~$256
+```
+
+The collateral seized is always proportional: `collateral × (repayAmount / totalDebt)`. The liquidator's profit comes from receiving collateral worth more than the debt they repaid.
+
+### The 3% Donation
+
+3% of all seized collateral goes to the Rewards Vault as WETH. This benefits ENNI stakers and applies to liquidations across all markets. If the donation fails for any reason, the liquidator receives the full amount instead.
+
+### Avoiding Liquidation
+
+Keep your LTV well below 88%. You can:
+
+- Add collateral to lower your LTV
+- Repay debt partially or fully
+- Let buyouts happen naturally at lower LTVs, which reduces your position size and earns you premium
+
+The app shows your current LTV, liquidation price, and simulates changes before you confirm any action.
+
+## Buyout vs Liquidation
+
+| | Buyout | Liquidation |
+|---|---|---|
+| LTV range | Below 88% | 88% and above |
+| Collateral pricing | Oracle price | Proportional (discount) |
+| Fee | 4–9% premium paid to borrower | 3% donated to vault |
+| Borrower experience | Earns income | Loses collateral at discount |
+| Peg effect | Burns supply, buy pressure | Burns supply |

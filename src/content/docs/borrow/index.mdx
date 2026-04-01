@@ -1,0 +1,68 @@
+---
+title: "Borrow"
+section: "Protocol"
+order: 4
+---
+
+Deposit WETH as collateral into a CDP and borrow enUSD or enCHF against it. There are no interest rates, no stability fees, and no time limits. Your debt stays the same until you choose to repay it.
+
+## Quick Start
+
+1. Wrap your ETH into WETH (the app does this automatically if needed)
+2. Deposit WETH to open a position
+3. Borrow enUSD or enCHF up to 85% of your collateral value
+4. Repay your debt whenever you're ready and withdraw your ETH
+
+## Two Markets
+
+| Market | You Borrow | Direct Swap |
+|---|---|---|
+| USD | enUSD | USDC, USDT |
+| CHF | enCHF | ZCHF |
+
+Each market has its own CDP and collateral pool. You can have one position per market per wallet. Both markets share the same parameters.
+
+## Parameters
+
+| | Value |
+|---|---|
+| Collateral | WETH |
+| Max LTV | 85% |
+| Liquidation threshold | 88% |
+| Minimum debt | 400 enUSD / 400 enCHF |
+| Interest rate | 0% |
+| Borrow fee | 0% |
+| Liquidation donation | 3% of seized collateral |
+
+All parameters are constants in the smart contract.
+
+## Managing Your Position
+
+**Deposit.** Add WETH to your position at any time. The app wraps ETH automatically if you don't have enough WETH. Depositing lowers your LTV.
+
+**Borrow.** Mint stablecoins up to 85% LTV. Your first borrow must be at least 400 units. After that you can borrow more as long as you stay within 85%.
+
+**Repay.** Burn stablecoins to reduce your debt. No fees or penalties. Partial repayment is fine as long as remaining debt stays above 400 units, or you can repay in full to clear it completely.
+
+You can repay with the native stablecoin directly, or use the zap feature:
+
+| Market | Repay With |
+|---|---|
+| USD | enUSD, USDC, USDT |
+| CHF | enCHF, ZCHF |
+
+The zap converts your tokens through Direct Swap and repays in a single transaction.
+
+**Withdraw.** Remove WETH from your position as long as your LTV stays at or below 85%. If you have no debt, you can withdraw everything.
+
+**Close.** Repay all debt first, then withdraw all collateral and claim any premium credit. A position is active as long as it has collateral, debt, or unclaimed premium.
+
+## What Happens at High LTV
+
+As ETH price drops, your LTV increases. Two things can happen:
+
+**Below 88% LTV** — your position is eligible for buyouts. Third parties can repay a portion of your debt in exchange for equivalent collateral, paying you a premium. You earn income from this.
+
+**At 88% LTV and above** — your position becomes liquidatable. Liquidators repay your debt and take your collateral at a discount. 3% of seized collateral is donated to ENNI stakers.
+
+Both are covered in detail on the next page.

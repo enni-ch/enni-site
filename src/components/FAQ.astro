@@ -3,106 +3,142 @@
 ---
 
 <section id="faq" class="max-w-3xl mx-auto px-8 py-32">
-  <h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">FAQ</h2>
-  <p class="text-base font-light text-neutral-800 text-center mb-16 max-w-lg mx-auto">
-    Common questions about ENNI.
-  </p>
+	<h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">FAQ</h2>
+	<p class="text-base font-light text-neutral-800 text-center mb-16 max-w-lg mx-auto">
+		Common questions about ENNI.
+	</p>
 
-  <div class="max-w-2xl mx-auto">
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">What collateral does ENNI accept?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          WETH (Wrapped ETH). You deposit ETH which gets wrapped into WETH as collateral in your CDP.
-        </p>
-      </div>
-    </div>
+	<div class="max-w-2xl mx-auto">
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">What collateral does ENNI accept?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					WETH (Wrapped ETH). You deposit ETH which gets wrapped into WETH as collateral in your CDP.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">How is 0% interest possible?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          There are no borrowing fees or interest rates in the contracts. Zero is hardcoded. The protocol earns revenue from liquidation collateral and DirectMint redemption fees instead.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">How is 0% interest possible?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					There are no borrowing fees or interest rates in the contracts. Zero is hardcoded. The protocol earns revenue from liquidation collateral and DirectMint redemption fees instead.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">What stablecoins can I borrow?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          enUSD (pegged to US Dollar) and enCHF (pegged to Swiss Franc). More currencies can be added in the future.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">What stablecoins can I borrow?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					enUSD (pegged to US Dollar) and enCHF (pegged to Swiss Franc). More currencies can be added in the future.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">What happens if my position gets liquidated?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          If your position reaches 88% LTV, anyone can liquidate it. The liquidator repays your debt and receives your collateral at a discount. 3% of seized collateral goes to ENNI stakers.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">What happens if my position gets liquidated?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					If your position reaches 88% LTV, anyone can liquidate it. The liquidator repays your debt and receives your collateral at a discount. 3% of seized collateral goes to ENNI stakers.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">Can enUSD or enCHF lose their peg?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          Any stablecoin can temporarily move off its peg due to market conditions. But ENNI stablecoins are overcollateralized by ETH, USDC, and USDT so there is no unbacked minting. If ETH price drops, borrowers are incentivized to buy back stablecoins and repay their debt to protect their collateral. A death spiral is not possible because minting requires healthy collateral in the first place. On top of that, the buyout system and DirectMint create natural forces that push the price back to peg.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">Can enUSD or enCHF lose their peg?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					Any stablecoin can temporarily move off its peg due to market conditions. But ENNI stablecoins are overcollateralized by ETH, USDC, and USDT so there is no unbacked minting. If ETH price drops, borrowers are incentivized to buy back stablecoins and repay their debt to protect their collateral. A death spiral is not possible because minting requires healthy collateral in the first place. On top of that, the buyout system and DirectMint create natural forces that push the price back to peg.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">Is the protocol audited?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          Yes, audited by Hashlock and Blockbite. All contracts are open source and verified on Etherscan.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">Where does the savings yield come from?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					The same way traditional bank deposits work. Borrowers post ETH collateral and take stablecoin loans. The protocol maintains a reserve surplus between total collateral value and outstanding liabilities. Loan repayments, liquidation proceeds, buyout premiums, and redemption fees continuously reduce stablecoin supply and sustain the reserve position. 5% is conservative relative to the collateral base and comparable to sovereign benchmark rates like the US 30-year treasury.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">Can the contracts be changed?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          No. All contracts are immutable. No proxies, no upgrades, no admin keys. The deployed code runs forever.
-        </p>
-      </div>
-    </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">Is there a lock-up for savings?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					No. Deposit and withdraw anytime with no penalties. There is a 24-hour cooldown on claiming rewards after a new deposit to ensure rewards go to genuine depositors, but your principal is always withdrawable instantly.
+				</p>
+			</div>
+		</div>
 
-    <div class="py-5 border-t border-b border-neutral-900">
-      <button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
-        <span class="text-sm tracking-tight font-semibold">What is DirectMint?</span>
-        <span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
-      </button>
-      <div data-answer class="hidden">
-        <p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
-          Swap USDC or USDT to enUSD at 1:1 with no slippage. Redeem back anytime for a 0.5% fee.
-        </p>
-      </div>
-    </div>
-  </div>
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">What's the difference between Savings and the Rewards Vault?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					Savings pays a fixed 5% APR on stablecoin deposits like enUSD or enCHF. The Rewards Vault pays variable protocol revenue in WETH, enUSD, and ENNI to ENNI token stakers. Different products for different assets and risk profiles.
+				</p>
+			</div>
+		</div>
+
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">Is the protocol audited?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					Yes, audited by Hashlock and Blockbite. All contracts are open source and verified on Etherscan.
+				</p>
+			</div>
+		</div>
+
+		<div class="py-5 border-t border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">Can the contracts be changed?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					No. All contracts are immutable. No proxies, no upgrades, no admin keys. The deployed code runs forever.
+				</p>
+			</div>
+		</div>
+
+		<div class="py-5 border-t border-b border-neutral-900">
+			<button class="flex items-center justify-between cursor-pointer w-full text-left" onclick="this.parentElement.querySelector('[data-answer]').classList.toggle('hidden'); this.querySelector('[data-icon]').classList.toggle('rotate-45')">
+				<span class="text-sm tracking-tight font-semibold">What is DirectMint?</span>
+				<span data-icon class="text-neutral-600 transition-transform text-lg shrink-0 ml-4">+</span>
+			</button>
+			<div data-answer class="hidden">
+				<p class="text-sm text-neutral-800 leading-relaxed pt-3 max-w-[90%]">
+					Swap USDC or USDT to enUSD at 1:1 with no slippage. Redeem back anytime for a 0.5% fee.
+				</p>
+			</div>
+		</div>
+	</div>
 </section>

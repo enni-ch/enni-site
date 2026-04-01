@@ -1,20 +1,41 @@
-# Enni.ch Website
+# enni.ch
 
-hello
+Website and documentation for the ENNI Protocol.
 
-## 🧞 Commands
+Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
 
-All commands are run from the root of the project, from a terminal:
+## Development
+```
+bun install
+bun dev
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+Dev server runs at `localhost:4321`.
 
-## 👀 Want to learn more?
+## Build
+```
+bun build
+bun preview
+```
 
-https://enni.ch/#community
+## Structure
+```
+src/
+├── components/     ← landing page sections
+├── content/docs/   ← documentation (MDX)
+├── layouts/        ← DocsLayout, landing layout
+├── pages/          ← routes
+└── styles/         ← global CSS
+```
+
+## Docs
+
+Documentation lives in `src/content/docs/` as MDX files. Add or edit pages there. The sidebar and search index are generated automatically.
+
+## Links
+
+- Website: https://enni.ch
+- Testnet: https://testnet.enni.ch
+- Docs: https://enni.ch/docs
+- GitHub: https://github.com/enni-ch
+- Telegram: https://t.me/enni_community

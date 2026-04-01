@@ -1,0 +1,39 @@
+---
+title: "Overview"
+section: "Protocol"
+order: 1
+---
+
+ENNI is a decentralized, immutable, and non-custodial CDP protocol on Ethereum. 
+It allows you to borrow stablecoins against your ETH at 0% interest. Depositors 
+can earn up to 5% fixed APR on their stablecoin holdings.
+
+## How it Works
+
+Lock your WETH as collateral in a CDP and borrow enUSD or enCHF against it. There are no interest rates, no stability fees, and no time limits on your loan. You repay when you want.
+
+Stablecoins can also be minted 1:1 through Direct Swap using USDC, USDT, or ZCHF. A 0.5% fee applies when redeeming back.
+
+Depositors can earn a fixed 5% APR by staking their enUSD or enCHF in Savings. Withdrawals are instant.
+
+## Markets
+
+| Stablecoin | Peg | Collateral | Direct Swap |
+|---|---|---|---|
+| enUSD | US Dollar | WETH | USDC, USDT |
+| enCHF | Swiss Franc | WETH | ZCHF |
+
+## Protocol Parameters
+
+| | Value |
+|---|---|
+| Borrow rate | 0% |
+| Savings APR | 5% |
+| Max LTV | 85% |
+| Liquidation threshold | 88% |
+| Minimum debt | 400 units |
+| Redemption fee | 0.5% |
+| ENNI total supply | 21,000,000 |
+| Emission schedule | 30 years |
+
+All protocol parameters are fixed at the smart contract level and cannot be modified.

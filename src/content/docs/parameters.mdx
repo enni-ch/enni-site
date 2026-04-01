@@ -1,0 +1,80 @@
+---
+title: "Parameters"
+section: "Reference"
+order: 12
+---
+
+All current markets (enUSD, enCHF) share the same CDP parameters.
+
+## CDP
+
+| Parameter | Value | Description |
+|---|---|---|
+| MAX_LTV_BPS | 8,500 (85%) | Maximum loan-to-value for borrowing and withdrawing |
+| LIQ_LTV_BPS | 8,800 (88%) | LTV threshold that triggers liquidation |
+| MIN_DEBT | 400 units | Minimum debt per position (e.g. 400 enUSD, 400 enCHF) |
+| DONATION_BPS | 300 (3%) | Percentage of seized collateral donated to vault during liquidation |
+| ORACLE_MAX_AGE | 24 hours | Maximum acceptable oracle price age |
+
+## Buyout Premiums
+
+| LTV Range | Premium |
+|---|---|
+| Below 60% | 9% |
+| 60% to 84.99% | 6% |
+| 85% to 87.99% | 4% |
+
+## Direct Swap (enUSD)
+
+| Parameter | Value | Description |
+|---|---|---|
+| Mint fee | 0% | No fee on minting enUSD from USDC/USDT |
+| REDEEM_FEE_BPS | 50 (0.5%) | Fee on enUSD redemption, donated to vault |
+
+## Direct Swap Generic (enCHF)
+
+| Parameter | Value | Description |
+|---|---|---|
+| Mint fee | 0% | No fee on minting enCHF from ZCHF |
+| REDEEM_FEE_BPS | 50 (0.5%) | Fee on enCHF redemption, burned |
+| Scale | 1e12 | Decimal conversion factor (ZCHF 18 dec to enCHF 6 dec) |
+
+## Savings
+
+| Parameter | Value | Description |
+|---|---|---|
+| ANNUAL_RATE_BPS | 500 (5%) | Fixed annual percentage rate |
+| CLAIM_COOLDOWN | 24 hours | Minimum time between deposit and claim/compound |
+| Supply cap | None | No limit on total staked |
+
+## Oracle
+
+| Parameter | Value | Description |
+|---|---|---|
+| STALE_CHAINLINK | 6 hours | Chainlink ETH/USD rejected if older than this |
+| STALE_REDSTONE | 24 hours | RedStone ETH/USD rejected if older than this |
+| STALE_TRANSLATOR | 24 hours | Translator feed (CHF/USD) rejected if older than this |
+| Price scale | 18 decimals | All prices normalized to 1e18 |
+
+## Token
+
+| | ENNI | enUSD | enCHF |
+|---|---|---|---|
+| Decimals | 18 | 6 | 6 |
+| Max supply | 21,000,000 | Unlimited | Unlimited |
+| Minter slots | 3 | 3 | 3 |
+
+## MasterChef
+
+| Parameter | Value | Description |
+|---|---|---|
+| MAX_POOLS | 8 | Maximum number of farming pools |
+| MAX_CHEF_MINT | 20,000,000 ENNI | Total mintable by MasterChef |
+| Emission duration | 30 years | Full schedule in Token section |
+
+## Rewards Vault
+
+| Parameter | Value | Description |
+|---|---|---|
+| Reward tokens | 3 | ENNI, WETH, enUSD |
+| Share ratio | 1:1 | Shares equal ENNI deposited |

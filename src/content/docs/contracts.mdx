@@ -1,0 +1,61 @@
+---
+title: "Contracts"
+section: "Reference"
+order: 13
+---
+
+All contracts are deployed on Ethereum mainnet. Source code is verified on Etherscan.
+
+## enUSD Market
+
+| Contract | Address |
+|---|---|
+| enUSD Token | TBD |
+| EnniCDP (enUSD) | TBD |
+| EnniOracle (enUSD) | TBD |
+| EnniDirectMint | TBD |
+| EnniSavings (enUSD) | TBD |
+
+## enCHF Market
+
+| Contract | Address |
+|---|---|
+| enCHF Token | TBD |
+| EnniCDP (enCHF) | TBD |
+| EnniOracle (enCHF) | TBD |
+| EnniDirectMintGeneric | TBD |
+| EnniSavings (enCHF) | TBD |
+
+## Shared
+
+| Contract | Address |
+|---|---|
+| ENNI Token | TBD |
+| EnniMasterChef | TBD |
+| EnniRewardsVault | TBD |
+| EnniRouter | TBD |
+
+## External Dependencies
+
+| Contract | Address |
+|---|---|
+| WETH | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 |
+| USDC | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 |
+| USDT | 0xdAC17F958D2ee523a2206206994597C13D831ec7 |
+| ZCHF | 0xB58E61C3098d85632Df34EecfB899A1Ed80921cB |
+
+## Minter Configuration
+
+| Token | Minter 1 | Minter 2 | Minter 3 |
+|---|---|---|---|
+| ENNI | MasterChef | Dead address | Dead address |
+| enUSD | CDP (enUSD) | DirectMint | Savings (enUSD) |
+| enCHF | CDP (enCHF) | DirectMintGeneric | Savings (enCHF) |
+
+## Ownership Status
+
+After deployment and configuration, all ownable contracts have their ownership renounced. Verify on Etherscan by checking that `owner()` returns `0x0000000000000000000000000000000000000000`.
+
+## Source Code
+
+GitHub: https://github.com/enni-ch

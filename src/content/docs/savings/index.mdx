@@ -1,0 +1,62 @@
+---
+title: "Savings"
+section: "Protocol"
+order: 6
+---
+
+Deposit enUSD or enCHF and earn a fixed 5% APR. Withdraw anytime. No lock, no cap, no conditions.
+
+## How it Works
+
+Deposit your stablecoins into the Savings contract. Rewards accrue every second at a fixed 5% annual rate on your staked balance. You can withdraw your principal at any time with no penalty.
+
+There is one Savings contract per stablecoin. Each operates independently.
+
+| | enUSD Savings | enCHF Savings |
+|---|---|---|
+| Deposit token | enUSD | enCHF |
+| Reward token | enUSD | enCHF |
+| APR | 5% | 5% |
+
+## Depositing
+
+Deposit enUSD or enCHF directly, or use the zap to deposit with USDC, USDT, or ZCHF. The zap converts through Direct Swap and deposits in a single transaction.
+
+| Market | Deposit With |
+|---|---|
+| enUSD Savings | enUSD, USDC, USDT |
+| enCHF Savings | enCHF, ZCHF |
+
+Depositing resets your 24-hour claim cooldown.
+
+## Withdrawing
+
+Withdraw any amount up to your full staked balance at any time. No lock period, no exit fee, no penalty.
+
+When you withdraw, any pending rewards are saved to your account. They're not lost. You can claim them later.
+
+## Claiming Rewards
+
+Rewards accumulate every second. To claim them, you need to wait at least 24 hours since your last deposit. This cooldown exists to prevent flash loan exploits.
+
+The cooldown only resets when you deposit. It does not reset when you claim or compound.
+
+Once the cooldown has passed, you can claim as often as you want. Claimed rewards are minted fresh and sent to your wallet.
+
+## Compounding
+
+Instead of claiming, you can compound your rewards back into your staked balance. This requires the same 24-hour cooldown as claiming.
+
+Compounded rewards start earning immediately. Over time, compounding gives you a higher effective yield since your staked balance grows.
+
+## Parameters
+
+| | Value |
+|---|---|
+| APR | 5% (fixed) |
+| Supply cap | None |
+| Deposit lock | None |
+| Withdrawal fee | None |
+| Claim cooldown | 24 hours (resets on deposit only) |
+
+All parameters are constants in the smart contract.

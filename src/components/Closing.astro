@@ -3,52 +3,50 @@
 import { Picture } from "astro:assets";
 import Enni from "@assets/Enni.png";
 ---
-
 <section id="community" class="max-w-3xl mx-auto px-8 pt-32 pb-16">
-  <div class="border border-neutral-900 rounded-xl p-10 sm:p-14 text-center mb-16">
-    <h2 class="text-2xl sm:text-3xl font-light tracking-tight mb-4">Join the community</h2>
-    <p class="text-base font-light text-neutral-800 mb-10 max-w-md mx-auto">
-      Learn more, ask questions, and build with ENNI.
-    </p>
-    <div class="flex items-center justify-center gap-8">
-      <a href="https://index.enni.ch" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
-        <div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center overflow-hidden">
-          <Picture
-            src={Enni}
-            formats={['avif', 'webp']}
-            alt=""
-            quality={28}
-            height={32}
-            densities={[1.5, 2]}
-            class="block w-8 h-8 rounded-full"
-          />
-        </div>
-        <span class="text-xs font-light text-neutral-800">Index</span>
-      </a>
-      <a href="https://github.com/enni-ch" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
-        <div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
-          <img src="/github.svg" alt="" class="w-6 h-6" />
-        </div>
-        <span class="text-xs font-light text-neutral-800">GitHub</span>
-      </a>
-      <a href="https://x.com/Enni_Index" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
-        <div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
-          <img src="/x.svg" alt="" class="w-6 h-6" />
-        </div>
-        <span class="text-xs font-light text-neutral-800">X</span>
-      </a>
-      <a href="https://t.me/enni_community" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
-        <div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
-          <img src="/telegram.svg" alt="" class="w-6 h-6" />
-        </div>
-        <span class="text-xs font-light text-neutral-800">Telegram</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="border-t border-neutral-200 pt-8 pb-12">
-    <p class="text-xs font-light text-neutral-800 leading-relaxed max-w-2xl mx-auto text-center">
-      ENNI smart contracts are provided under the UNLICENSED license and are public. The smart contracts are the only agreement. There are no warranties, no guarantees. Any loss is on you. Use at your own risk. ENNI contracts use battle tested libraries like OpenZeppelin and rely on third party dependencies including Chainlink and Chronicle oracle feeds, USDC, USDT, and the Ethereum network. While the protocol has been audited, no audit eliminates all risk. These dependencies carry their own risks outside the protocol's control. This is not legal or financial advice. Do your own research.
-    </p>
-  </div>
+	<div class="border border-neutral-900 rounded-xl p-10 sm:p-14 text-center mb-16">
+		<h2 class="text-2xl sm:text-3xl font-light tracking-tight mb-4">Join the community</h2>
+		<p class="text-base font-light text-neutral-800 mb-10 max-w-md mx-auto">
+			Learn more, ask questions, and build with ENNI.
+		</p>
+		<div class="flex items-center justify-center gap-8">
+			<a href="https://testnet.enni.ch" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
+				<div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center overflow-hidden">
+					<Picture
+						src={Enni}
+						formats={['avif', 'webp']}
+						alt=""
+						quality={28}
+						height={32}
+						densities={[1.5, 2]}
+						class="block w-8 h-8 rounded-full"
+					/>
+				</div>
+				<span class="text-xs font-light text-neutral-800">App</span>
+			</a>
+			<a href="https://github.com/enni-ch" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
+				<div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
+					<img src="/github.svg" alt="" class="w-6 h-6" />
+				</div>
+				<span class="text-xs font-light text-neutral-800">GitHub</span>
+			</a>
+			<a href="https://x.com/Enni_Index" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
+				<div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
+					<img src="/x.svg" alt="" class="w-6 h-6" />
+				</div>
+				<span class="text-xs font-light text-neutral-800">X</span>
+			</a>
+			<a href="https://t.me/enni_community" target="_blank" rel="noopener noreferrer" class="cursor-pointer flex flex-col items-center gap-2 hover:opacity-70 transition-opacity no-underline">
+				<div class="w-12 h-12 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center">
+					<img src="/telegram.svg" alt="" class="w-6 h-6" />
+				</div>
+				<span class="text-xs font-light text-neutral-800">Telegram</span>
+			</a>
+		</div>
+	</div>
+	<div class="border-t border-neutral-200 pt-8 pb-12">
+		<p class="text-xs font-light text-neutral-800 leading-relaxed max-w-2xl mx-auto text-center">
+			ENNI smart contracts are provided under the UNLICENSED license and are public. The smart contracts are the only agreement. There are no warranties, no guarantees. Any loss is on you. Use at your own risk. ENNI contracts use battle tested libraries like OpenZeppelin and rely on third party dependencies including Chainlink and Chronicle oracle feeds, USDC, USDT, ZCHF (Frankencoin), and the Ethereum network. While the protocol has been audited, no audit eliminates all risk. These dependencies carry their own risks outside the protocol's control. This is not legal or financial advice. Do your own research.
+		</p>
+	</div>
 </section>

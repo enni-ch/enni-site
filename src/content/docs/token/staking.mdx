@@ -1,0 +1,38 @@
+---
+title: "Staking & Farming"
+section: "Token"
+order: 9
+---
+
+Earn ENNI through liquidity farming and earn protocol revenue by staking ENNI in the Rewards Vault.
+
+## Rewards Vault (ENNI Staking)
+
+Deposit ENNI into the Rewards Vault to earn protocol revenue. The vault stakes your ENNI in MasterChef on your behalf and distributes three reward tokens:
+
+| Reward | Source |
+|---|---|
+| ENNI | MasterChef farming emissions (auto-compounded) |
+| WETH | CDP liquidation donations (3% of seized collateral from all markets) |
+| enUSD | Direct Swap redemption fees (0.5% of redeemed enUSD) |
+
+Note that enCHF redemption fees are burned, not donated. So the vault receives WETH from both markets but only enUSD from Direct Swap.
+
+Deposit and withdraw at any time. No lock, no cooldown, no withdrawal fee. Depositing and withdrawing auto-claims your pending rewards.
+
+## Farming (MasterChef)
+
+ENNI is distributed to liquidity providers through MasterChef over 30 years. Up to 8 pools can exist, each with an allocation weight that determines its share of emissions.
+
+Rewards are distributed per second based on the emission schedule. You earn proportionally to your share of the pool.
+
+MasterChef supports `depositFor()` for router and zap integrations, and `emergencyWithdraw()` which returns your LP tokens but forfeits unclaimed rewards.
+
+## Parameters
+
+| | Value |
+|---|---|
+| Max pools | 8 |
+| Max ENNI mintable by MasterChef | 20,000,000 |
+| Vault share ratio | 1:1 (shares equal ENNI deposited) |
+| Vault reward tokens | 3 (ENNI, WETH, enUSD) |

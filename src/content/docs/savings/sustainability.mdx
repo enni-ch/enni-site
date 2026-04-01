@@ -1,0 +1,46 @@
+---
+title: "Sustainability"
+section: "Protocol"
+order: 7
+---
+
+The 5% APR is funded by the protocol's reserve surplus and excess collateral margin. It is not sourced from external revenue, token emissions, or speculative yield strategies.
+
+## Reserve Surplus
+
+All CDP-minted stablecoins are secured by a minimum 117% ETH collateral ratio (from the 85% max LTV). All Direct Swap minted stablecoins are backed 1:1 by USDC, USDT, or ZCHF sitting in the contract. The protocol consistently holds more in reserves than it owes.
+
+The savings yield operates within this surplus. The 5% savings yield is funded from this collateral surplus. Because the protocol holds significantly more than it owes, it can sustain a conservative yield without compromising its reserves.
+
+## Supply Growth
+
+The 5% rate applies only to staked stablecoins, not total supply. In practice, most stablecoins circulate outside of Savings: in wallets, LP pools, trading, or as collateral in other protocols.
+
+| Staking Rate | Annual Supply Growth |
+|---|---|
+| 50% staked | 2.5% |
+| 40% staked | 2.0% |
+| 30% staked | 1.5% |
+
+At typical staking rates of 30-40%, annual supply growth is roughly 1.5-2%.
+
+## Structural Demand
+
+Multiple protocol-level mechanisms generate continuous demand for stablecoins, counterbalancing supply growth:
+
+- CDP loan repayments remove stablecoins from circulation
+- Direct Swap redemptions charge a 0.5% fee on every exit
+- Liquidations require stablecoins to execute, removing debt from the system
+- Buyout arbitrage creates sustained buy pressure during depegs
+
+For enCHF specifically, the 0.5% redemption fee is burned entirely rather than donated, creating stronger deflationary pressure.
+
+## Rate Calibration
+
+The rate is calibrated to long-term sovereign benchmark yields. The US 30-year treasury has historically ranged around 4-5%. For CHF, this rate is well above Swiss benchmark rates, which have historically been near zero, making the enCHF savings rate particularly competitive.
+
+## Why Fixed
+
+A variable rate would require governance or an automated controller. ENNI has neither. The rate is permanently set at the contract level. This is a deliberate design choice: predictability over optimization.
+
+Market dynamics handle the rest. If ETH drops significantly, borrowers repay debt (reducing supply). If confidence shifts, savers withdraw (reducing the staking rate and therefore supply growth). The system self-adjusts without intervention.

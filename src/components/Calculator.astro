@@ -1,7 +1,7 @@
 ---
 // Calculator Section
 import { Picture } from "astro:assets";
-import Enni from "@assets/Enni.png";
+import Enni from "@assets/EnniNew.png";
 ---
 
 <section id="calculator" class="max-w-4xl mx-auto px-8 py-32">
@@ -255,12 +255,17 @@ async function fetchPrices() {
 
   // Last resort: manual input
   ethPrice = 0;
-  ethPriceEl.innerHTML = '<input id="manual-eth-price" type="number" placeholder="Enter ETH price" class="w-28 text-right text-sm font-normal text-neutral-900 border border-neutral-200 rounded px-2 py-1 outline-none" />';
-  const manualInput = document.getElementById("manual-eth-price") as HTMLInputElement;
-  manualInput.addEventListener("input", () => {
-    ethPrice = parseFloat(manualInput.value) || 0;
-    if (ethPrice > 0) calculate();
-  });
+ethPriceEl.textContent = '';
+const manualInput = document.createElement('input');
+manualInput.id = 'manual-eth-price';
+manualInput.type = 'number';
+manualInput.placeholder = 'Enter ETH price';
+manualInput.className = 'w-28 text-right text-sm font-normal text-neutral-900 border border-neutral-200 rounded px-2 py-1 outline-none';
+ethPriceEl.appendChild(manualInput);
+manualInput.addEventListener('input', () => {
+  ethPrice = parseFloat(manualInput.value) || 0;
+  if (ethPrice > 0) calculate();
+});
 }
 
   function fmt(n: number): string {

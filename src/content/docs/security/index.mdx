@@ -1,0 +1,54 @@
+---
+title: "Security"
+section: "Reference"
+order: 10
+---
+
+ENNI is designed to minimize trust assumptions. Immutable contracts, no admin keys, everything verifiable on-chain.
+
+## Immutability
+
+Every contract is non-upgradeable. No proxies, no delegatecall, no selfdestruct. Once deployed, the bytecode cannot change. There is no mechanism to pause, freeze, or modify any contract.
+
+## Ownership
+
+EnniToken and EnniMasterChef have owner roles at deployment for initial configuration (setting minter addresses, adding farming pools). Once configuration is complete, ownership is renounced permanently. After renouncement:
+
+- Minter addresses on all tokens are locked forever
+- Farming pools and allocation weights are locked forever
+- No admin function can ever be called again
+
+Verify renouncement on Etherscan by checking that `owner()` returns `0x0000000000000000000000000000000000000000`.
+
+## Smart Contract Practices
+
+- ReentrancyGuard on every state-changing external function
+- SafeERC20 for all token transfers
+- Checks-Effects-Interactions pattern followed consistently
+- All non-critical external calls wrapped in try/catch to guarantee liveness
+- Balance-before/after on deposits for fee-on-transfer token safety
+
+## Audits
+
+Two audits have been completed on the core contracts.
+
+| Auditor | Findings | Key Fixes |
+|---|---|---|
+| Hashlock | Audited | Liquidation min debt removed, vault donation fallback, dust collateral handling |
+| BlockBite | Audited | MasterChef decimal check added, burnFrom uses OZ _spendAllowance |
+
+All contracts share the same codebase across markets. One audit covers every deployment.
+
+Source code is verified on Etherscan and available on GitHub.
+
+## Known Dependencies
+
+These are external factors outside the protocol's control:
+
+**Oracle feeds.** If both Chainlink and RedStone ETH/USD feeds are unavailable for over 24 hours, borrowing, withdrawing, buyouts, and liquidations pause across all markets. Deposits and repayments still work.
+
+**Translator feeds.** Non-USD markets (enCHF) depend on a Chainlink forex feed (CHF/USD). If this feed goes stale, that market pauses independently. Other markets are unaffected.
+
+**USDC and USDT.** If Circle or Tether blacklists the Direct Swap contract, stablecoins held there become inaccessible. This would remove the hard peg floor for enUSD. CDP-minted enUSD backed by WETH remains unaffected. enCHF is not affected.
+
+**Ethereum.** The protocol inherits all risks and guarantees of the Ethereum base layer.

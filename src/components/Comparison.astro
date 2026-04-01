@@ -1,114 +1,121 @@
 ---
 import { Picture } from "astro:assets";
-import Enni from "@assets/Enni.png";
+import Enni from "@assets/EnniNew.png";
 ---
 
 <section id="comparison" class="max-w-4xl mx-auto px-8 py-32">
-  <h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">How ENNI compares</h2>
-  <p class="text-base font-light text-neutral-800 text-center mb-16 max-w-lg mx-auto">
-    See how ENNI stacks up against other protocols.
-  </p>
+	<h2 class="text-3xl sm:text-4xl font-light tracking-tight text-center mb-4">How ENNI compares</h2>
+	<p class="text-base font-light text-neutral-800 text-center mb-16 max-w-lg mx-auto">
+		See how ENNI stacks up against other protocols.
+	</p>
 
-  <div class="max-w-3xl mx-auto overflow-x-auto">
-    <table class="w-full text-sm font-light">
-      <thead>
-        <tr class="border-b border-neutral-900">
-          <th class="text-left py-4 pr-4 font-light text-neutral-800"></th>
-          <th class="text-center py-5 px-5 font-normal text-white bg-emerald-700 rounded-tl-xl text-lg">
-            <span class="inline-flex flex-col items-center justify-center gap-1.5">
-              <Picture
-                src={Enni}
-                formats={['avif', 'webp']}
-                alt="ENNI logo."
-                quality={48}
-                height={36}
-                densities={[1.5, 2]}
-                class="block shrink-0 rounded-full border-neutral-500 border w-9 h-9"
-              />
-              ENNI
-            </span>
-          </th>
-          <th class="text-center py-5 px-3 font-light text-neutral-800">
-            <span class="inline-flex flex-col items-center justify-center gap-1.5">
-              <img src="/aave.svg" alt="Aave logo" class="w-9 h-9 rounded-md" />
-              Aave
-            </span>
-          </th>
-          <th class="text-center py-5 px-3 font-light text-neutral-800">
-            <span class="inline-flex flex-col items-center justify-center gap-1.5">
-              <img src="/maker.svg" alt="Maker logo" class="w-9 h-9 rounded-md" />
-              Maker (Sky)
-            </span>
-          </th>
-          <th class="text-center py-5 px-3 font-light text-neutral-800">
-            <span class="inline-flex flex-col items-center justify-center gap-1.5">
-              <img src="/liquity.svg" alt="Liquity logo" class="w-9 h-9 rounded-md" />
-              Liquity v2
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Interest rate</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">0% forever</td>
-          <td class="text-center py-4 px-3 text-neutral-700">3-5%</td>
-          <td class="text-center py-4 px-3 text-neutral-700">3-5%</td>
-          <td class="text-center py-4 px-3 text-neutral-700">User-set 0.5-5%</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Fees</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Varies</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Stability fee</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Varies</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Immutable</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">Yes</td>
-          <td class="text-center py-4 px-3 text-neutral-700">No</td>
-          <td class="text-center py-4 px-3 text-neutral-700">No</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Yes</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Governance</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Token voting</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Token voting</td>
-          <td class="text-center py-4 px-3 text-neutral-700">None</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Governance capture risk</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Yes</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Yes</td>
-          <td class="text-center py-4 px-3 text-neutral-700">None</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Parameter change risk</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Yes</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Yes</td>
-          <td class="text-center py-4 px-3 text-neutral-700">None</td>
-        </tr>
-        <tr class="border-b border-neutral-200">
-          <td class="py-4 pr-4 text-neutral-800">Redemptions</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">Voluntary</td>
-          <td class="text-center py-4 px-3 text-neutral-700">N/A</td>
-          <td class="text-center py-4 px-3 text-neutral-700">N/A</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Forced</td>
-        </tr>
-        <tr>
-          <td class="py-4 pr-4 text-neutral-800">Liquidity</td>
-          <td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 rounded-b-xl text-base font-normal">Growing</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Deep</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Deep</td>
-          <td class="text-center py-4 px-3 text-neutral-700">Growing</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="text-xs font-light text-neutral-700 text-center mt-10 max-w-lg mx-auto">
-  *Competitor data is approximate and may vary. This comparison is for informational purposes only and is not intended to disparage any project. Always do your own research.
-</p>
+	<div class="max-w-3xl mx-auto overflow-x-auto">
+		<table class="w-full text-sm font-light">
+			<thead>
+				<tr class="border-b border-neutral-900">
+					<th class="text-left py-4 pr-4 font-light text-neutral-800"></th>
+					<th class="text-center py-5 px-5 font-normal text-white bg-emerald-700 rounded-tl-xl text-lg">
+						<span class="inline-flex flex-col items-center justify-center gap-1.5">
+							<Picture
+								src={Enni}
+								formats={['avif', 'webp']}
+								alt="ENNI logo."
+								quality={48}
+								height={36}
+								densities={[1.5, 2]}
+								class="block shrink-0 rounded-full w-9 h-9"
+							/>
+							ENNI
+						</span>
+					</th>
+					<th class="text-center py-5 px-3 font-light text-neutral-800">
+						<span class="inline-flex flex-col items-center justify-center gap-1.5">
+							<img src="/aave.svg" alt="Aave logo" class="w-9 h-9 rounded-md" />
+							Aave
+						</span>
+					</th>
+					<th class="text-center py-5 px-3 font-light text-neutral-800">
+						<span class="inline-flex flex-col items-center justify-center gap-1.5">
+							<img src="/maker.svg" alt="Maker logo" class="w-9 h-9 rounded-md" />
+							Maker (Sky)
+						</span>
+					</th>
+					<th class="text-center py-5 px-3 font-light text-neutral-800">
+						<span class="inline-flex flex-col items-center justify-center gap-1.5">
+							<img src="/liquity.svg" alt="Liquity logo" class="w-9 h-9 rounded-md" />
+							Liquity v2
+						</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Interest rate</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">0% forever</td>
+					<td class="text-center py-4 px-3 text-neutral-700">3-5%</td>
+					<td class="text-center py-4 px-3 text-neutral-700">3-5%</td>
+					<td class="text-center py-4 px-3 text-neutral-700">User-set 0.5-5%</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Fees</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Varies</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Stability fee</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Varies</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Savings rate</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">5% fixed</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Variable (~3-5%)</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Variable (~3-6%)</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Variable (~3-6%)</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Immutable</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">Yes</td>
+					<td class="text-center py-4 px-3 text-neutral-700">No</td>
+					<td class="text-center py-4 px-3 text-neutral-700">No</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Yes</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Governance</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Token voting</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Token voting</td>
+					<td class="text-center py-4 px-3 text-neutral-700">None</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Governance capture risk</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Yes</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Yes</td>
+					<td class="text-center py-4 px-3 text-neutral-700">None</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Parameter change risk</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">None</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Yes</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Yes</td>
+					<td class="text-center py-4 px-3 text-neutral-700">None</td>
+				</tr>
+				<tr class="border-b border-neutral-200">
+					<td class="py-4 pr-4 text-neutral-800">Redemptions</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 text-base font-normal">Voluntary</td>
+					<td class="text-center py-4 px-3 text-neutral-700">N/A</td>
+					<td class="text-center py-4 px-3 text-neutral-700">N/A</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Forced</td>
+				</tr>
+				<tr>
+					<td class="py-4 pr-4 text-neutral-800">Liquidity</td>
+					<td class="text-center py-5 px-5 bg-emerald-50 text-emerald-900 rounded-b-xl text-base font-normal">Growing</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Deep</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Deep</td>
+					<td class="text-center py-4 px-3 text-neutral-700">Growing</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p class="text-xs font-light text-neutral-700 text-center mt-10 max-w-lg mx-auto">
+		*Competitor data is approximate and may vary. This comparison is for informational purposes only and is not intended to disparage any project. Always do your own research.
+	</p>
 </section>

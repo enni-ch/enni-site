@@ -1,0 +1,58 @@
+---
+title: "Token"
+section: "Token"
+order: 8
+---
+
+The protocol uses three tokens. ENNI is the ecosystem token with a fixed supply. enUSD and enCHF are stablecoins with no supply cap.
+
+## ENNI
+
+| | |
+|---|---|
+| Type | ERC20 + ERC20Permit |
+| Decimals | 18 |
+| Max supply | 21,000,000 |
+| Initial allocation | 1,000,000 |
+| Farming emission | 20,000,000 over 30 years |
+
+No additional ENNI can ever be minted beyond the 21M cap. This is enforced at both the MasterChef and token contract level.
+
+ENNI has no governance function. It is a pure value accrual token. Stakers earn protocol revenue through the Rewards Vault.
+
+## Emission Schedule
+
+The 20M farming allocation is distributed over 30 years through MasterChef. The rate decreases over time.
+
+| Phase | Period | Annual Emission | Total |
+|---|---|---|---|
+| Phase 1 | Year 1 to 2 | 2,000,000 | 4,000,000 |
+| Phase 2 | Year 3 to 10 | 1,000,000 | 8,000,000 |
+| Phase 3 | Year 11 to 30 | 400,000 | 8,000,000 |
+
+After year 30, no more ENNI is emitted. The total supply is 21,000,000 forever.
+
+## Stablecoins
+
+Both stablecoins share the same token contract (EnniToken) with different constructor arguments.
+
+| | enUSD | enCHF |
+|---|---|---|
+| Peg | US Dollar | Swiss Franc |
+| Decimals | 6 | 6 |
+| Max supply | Unlimited | Unlimited |
+| Minters | CDP, Direct Swap, Savings | CDP, Direct Swap, Savings |
+
+Supply increases when users borrow from CDPs, mint through Direct Swap, or claim savings rewards. Supply decreases when users repay loans, redeem through Direct Swap, or when redemption fees are burned.
+
+## Token Contract
+
+All three tokens use the same EnniToken contract. Each has 3 minter slots set at deployment. After ownership is renounced, minter addresses are locked permanently. No new minters can be added.
+
+| Token | Minter 1 | Minter 2 | Minter 3 |
+|---|---|---|---|
+| ENNI | MasterChef | Dead address | Dead address |
+| enUSD | CDP (enUSD) | Direct Swap | Savings (enUSD) |
+| enCHF | CDP (enCHF) | Direct Swap Generic | Savings (enCHF) |
+
+The token supports standard ERC20 operations plus ERC20Permit for gasless approvals. Anyone can burn their own tokens.
