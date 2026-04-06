@@ -23,7 +23,7 @@ bun preview
 src/
 ├── components/     ← landing page sections
 ├── content/docs/   ← documentation (MDX)
-├── layouts/        ← DocsLayout, landing layout
+├── layouts/        ← DocsLayout
 ├── pages/          ← routes
 └── styles/         ← global CSS
 ```
