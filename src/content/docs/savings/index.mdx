@@ -27,7 +27,7 @@ Deposit enUSD or enCHF directly, or use the zap to deposit with USDC, USDT, or Z
 | enUSD Savings | enUSD, USDC, USDT |
 | enCHF Savings | enCHF, ZCHF |
 
-Depositing resets your 24-hour claim cooldown.
+Depositing resets your 1-hour claim cooldown.
 
 ## Withdrawing
 
@@ -37,7 +37,7 @@ When you withdraw, any pending rewards are saved to your account. They're not lo
 
 ## Claiming Rewards
 
-Rewards accumulate every second. To claim them, you need to wait at least 24 hours since your last deposit. This cooldown exists to prevent flash loan exploits.
+Rewards accumulate every second. To claim them, you need to wait at least 1 hours since your last deposit. This cooldown exists to prevent flash loan exploits.
 
 The cooldown only resets when you deposit. It does not reset when you claim or compound.
 
@@ -45,7 +45,7 @@ Once the cooldown has passed, you can claim as often as you want. Claimed reward
 
 ## Compounding
 
-Instead of claiming, you can compound your rewards back into your staked balance. This requires the same 24-hour cooldown as claiming.
+Instead of claiming, you can compound your rewards back into your staked balance. This requires the same 1-hour cooldown as claiming.
 
 Compounded rewards start earning immediately. Over time, compounding gives you a higher effective yield since your staked balance grows.
 
@@ -57,6 +57,6 @@ Compounded rewards start earning immediately. Over time, compounding gives you a
 | Supply cap | None |
 | Deposit lock | None |
 | Withdrawal fee | None |
-| Claim cooldown | 24 hours (resets on deposit only) |
+| Claim cooldown | 1 hours (resets on deposit only) |
 
 All parameters are constants in the smart contract.

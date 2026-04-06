@@ -11,7 +11,7 @@ Testnet tokens are worthless. Contracts may be redeployed at any time.
 ## How to Use
 
 1. Get Sepolia ETH from any faucet (Google, Alchemy, etc.)
-2. Get test USDC/USDT from the faucet in the app
+2. Get test USDC from the faucet in the app
 3. Connect your wallet to Sepolia network
 4. Use the app at testnet.enni.ch
 
@@ -19,40 +19,70 @@ Testnet tokens are worthless. Contracts may be redeployed at any time.
 
 | Contract | Address |
 |---|---|
-| enUSD Token | TBD |
-| EnniCDP (enUSD) | TBD |
-| EnniOracle (enUSD) | TBD |
-| EnniDirectMint | TBD |
+| enUSD Token | `0x650eb779fBc3C899Fe9444f0c554DF2e774c1c2D` |
+| EnniCDP (enUSD) | `0x7dd682d080F0F2D8AFBb41c743331f8a49566883` |
+| EnniOracle (enUSD) | `0xeA5A4aFccd348627eCc283676CdB560F1e284234` |
+| EnniDirectMint | `0x9f048c4d1b40fc13A0bb73d804B78EFfeD4412F0` |
+| EnniSavings (enUSD) | `0xB126De23d2678040FE66F92034A8Ae952651d202` |
 
 ## enCHF Market
 
 | Contract | Address |
 |---|---|
-| enCHF Token | TBD |
-| EnniCDP (enCHF) | TBD |
-| EnniOracle (enCHF) | TBD |
+| enCHF Token | `0x45A9F12F846673d07c092e29C375936e9A10214b` |
+| EnniCDP (enCHF) | `0x0891C54c09612C000B8Cde750b24B7845778482c` |
+| EnniOracle (enCHF) | `0xBa72454e711d7f5D66194D83b82Af94f847ACE49` |
+| EnniDirectMintGeneric | `0xcAFf973D571C3FE2bc548bF392a8ca359aB5B794` |
+| EnniSavings (enCHF) | `0xecF00322B9ff85c59710fF29dD10C5f1e1C07C67` |
 
 ## Shared
 
 | Contract | Address |
 |---|---|
-| ENNI Token | TBD |
-| EnniMasterChef | TBD |
-| EnniRewardsVault | TBD |
+| ENNI Token | `0xeF9860318d55756A2B86089F2f4e8E7c21e105fd` |
+| EnniMasterChef | `0x49D85D3e32e8710C562ec0D835E4A510A96DBf2d` |
+| EnniRewardsVault | `0xafc620DF58b9DB3308E1F7321c7D9B40a8D45F79` |
+| EnniRouter | `0xd67Fee385885286897F312E2C8b7BcD3bd70aa2c` |
+| Multicall3 | `0xcA11bde05977b3631167028862bE2a173976CA11` |
+
+## Oracle Feeds
+
+| Feed | Address |
+|---|---|
+| Chainlink ETH/USD | `0x694AA1769357215DE4FAC081bf1f309aDC325306` |
+| Redstone ETH/USD | `0xefe76D1C11F267d8735D240f53317F238D8C77c9` |
+| Chainlink CHF/USD | `0x91FAB41F5f3bE955963a986366edAcff1aaeaa83` |
+
+Sepolia oracle feeds may lag behind mainnet prices or update less frequently. Chainlink does not provide a CHF/USD feed on Sepolia, so the testnet uses the EUR/USD feed as a stand-in. This is a known approximation for testing purposes only — mainnet will use a real CHF/USD feed.
 
 ## Test Tokens
 
 | Token | Address | Decimals |
 |---|---|---|
-| USDC (test) | TBD | 6 |
-| USDT (test) | TBD | 6 |
-| WETH (Sepolia) | TBD | 18 |
+| USDC (test) | `0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238` | 6 |
+| USDT (test) | `0x337131ba7Fc290C569587da126c1d370e050bb1a` | 6 |
+| ZCHF (test) | `0xB1dd02E9b7179CD30b8dc405cA57880C2560b199` | 18 |
+| WETH (Sepolia) | `0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14` | 18 |
 
-USDC and USDT on testnet are dummy tokens, not real Circle/Tether contracts.
+USDC and USDT on testnet are dummy tokens, not real Circle/Tether contracts. ZCHF is a test deployment of Frankencoin.
+
+## Key Parameters
+
+| Parameter | Value |
+|---|---|
+| Min debt (enUSD) | 400 enUSD |
+| Max LTV | 85% |
+| Liquidation LTV | 88% |
+| Redeem fee (DirectMint) | 0.5% |
+| Savings APR | 5% |
+| Savings claim cooldown | 1 hours |
+| MasterChef max pools | 8 |
+| MasterChef mint budget | 20,000,000 ENNI |
+| Oracle max age | 24 hours |
 
 ## What's Different from Mainnet
 
-- USDC/USDT are test tokens with a faucet
+- USDC/USDC/ZCHF are test tokens
 - Oracle feeds are Sepolia versions, prices may lag or behave differently
 - Contracts may be redeployed without notice
 

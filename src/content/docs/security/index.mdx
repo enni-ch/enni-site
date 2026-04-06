@@ -32,14 +32,14 @@ Verify renouncement on Etherscan by checking that `owner()` returns `0x000000000
 
 Two audits have been completed on the core contracts.
 
-| Auditor | Findings | Key Fixes |
-|---|---|---|
-| Hashlock | Audited | Liquidation min debt removed, vault donation fallback, dust collateral handling |
-| BlockBite | Audited | MasterChef decimal check added, burnFrom uses OZ _spendAllowance |
+| Auditor | Report |
+|---|---|
+| Hashlock | [View report](/Hashlock-Audit.pdf) |
+| BlockBite | [View report](/Blockbite-Audit.pdf) |
 
 All contracts share the same codebase across markets. One audit covers every deployment.
 
-Source code is verified on Etherscan and available on GitHub.
+Source code is verified on Etherscan and available on [GitHub](https://github.com/enni-ch).
 
 ## Known Dependencies
 
@@ -49,6 +49,6 @@ These are external factors outside the protocol's control:
 
 **Translator feeds.** Non-USD markets (enCHF) depend on a Chainlink forex feed (CHF/USD). If this feed goes stale, that market pauses independently. Other markets are unaffected.
 
-**USDC and USDT.** If Circle or Tether blacklists the Direct Swap contract, stablecoins held there become inaccessible. This would remove the hard peg floor for enUSD. CDP-minted enUSD backed by WETH remains unaffected. enCHF is not affected.
+**USDC and USDT.** If Circle or Tether blacklists the DirectMint contract, stablecoins held there become inaccessible. This would remove the hard peg floor for enUSD. CDP-minted enUSD backed by WETH remains unaffected. enCHF is not affected.
 
 **Ethereum.** The protocol inherits all risks and guarantees of the Ethereum base layer.

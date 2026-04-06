@@ -29,7 +29,10 @@ All current markets (enUSD, enCHF) share the same CDP parameters.
 | Parameter | Value | Description |
 |---|---|---|
 | Mint fee | 0% | No fee on minting enUSD from USDC/USDT |
-| REDEEM_FEE_BPS | 50 (0.5%) | Fee on enUSD redemption, donated to vault |
+| REDEEM_FEE_BPS | 50 (0.5%) | Fee on enUSD redemption |
+| Fee destination | ENNI Vault | Redeem fees are donated to the vault and distributed to ENNI stakers |
+
+Redemption liquidity depends on the USDC and USDT reserves held by the contract. There is no mint cap — enUSD can be minted 1:1 without limit.
 
 ## Direct Swap Generic (enCHF)
 
@@ -37,15 +40,36 @@ All current markets (enUSD, enCHF) share the same CDP parameters.
 |---|---|---|
 | Mint fee | 0% | No fee on minting enCHF from ZCHF |
 | REDEEM_FEE_BPS | 50 (0.5%) | Fee on enCHF redemption, burned |
-| Scale | 1e12 | Decimal conversion factor (ZCHF 18 dec to enCHF 6 dec) |
+| Scale | 1e12 | Decimal conversion factor (ZCHF 18 dec → enCHF 6 dec) |
+| Mint cap | Configurable | Owner-set cap on total enCHF minted via this contract |
+
+The mint cap limits total enCHF issuance through DirectMintGeneric. `remainingMintCap()` returns how much can still be minted. Redeeming does not restore mint cap — it only returns ZCHF reserves from the contract.
 
 ## Savings
 
 | Parameter | Value | Description |
 |---|---|---|
-| ANNUAL_RATE_BPS | 500 (5%) | Fixed annual percentage rate |
-| CLAIM_COOLDOWN | 24 hours | Minimum time between deposit and claim/compound |
+| ANNUAL_RATE_BPS | 500 (5%) | Fixed annual percentage rate, accrued per second |
+| CLAIM_COOLDOWN | 1 hours | Minimum time between last deposit and claim/compound |
 | Supply cap | None | No limit on total staked |
+
+### Cooldown Behavior
+
+- Every new deposit resets the 1-hour claim cooldown timer.
+- **Compounding does not reset the cooldown** — users can compound without affecting their timer.
+- Withdrawals are always instant and unaffected by cooldown.
+- Rewards accrue continuously per second regardless of cooldown status.
+
+### Zap Routing
+
+Both savings pools support depositing non-native assets via the EnniRouter:
+
+| Pool | Native Asset | Zap Assets |
+|---|---|---|
+| enUSD Savings | enUSD | USDC, USDT |
+| enCHF Savings | enCHF | ZCHF |
+
+When depositing a zap asset, the Router mints the native stablecoin 1:1 via DirectMint and deposits it into Savings in a single transaction. Approval is granted to the Router, not the Savings contract directly.
 
 ## Oracle
 
@@ -54,7 +78,16 @@ All current markets (enUSD, enCHF) share the same CDP parameters.
 | STALE_CHAINLINK | 6 hours | Chainlink ETH/USD rejected if older than this |
 | STALE_REDSTONE | 24 hours | RedStone ETH/USD rejected if older than this |
 | STALE_TRANSLATOR | 24 hours | Translator feed (CHF/USD) rejected if older than this |
+| ORACLE_MAX_AGE | 24 hours | Maximum acceptable price age for CDP operations |
 | Price scale | 18 decimals | All prices normalized to 1e18 |
+
+### Dual-Oracle Design
+
+EnniOracle uses two independent ETH/USD price sources (Chainlink and RedStone) and takes the lower of the two. This protects the protocol against a single oracle reporting an inflated price.
+
+### CHF Market Oracle
+
+The enCHF oracle derives ETH/CHF by combining the ETH/USD price with a CHF/USD translator feed. If any of the three feeds (Chainlink ETH/USD, RedStone ETH/USD, CHF/USD translator) is stale beyond its threshold, the oracle reverts and CDP operations are blocked until fresh prices are available.
 
 ## Token
 
@@ -64,13 +97,47 @@ All current markets (enUSD, enCHF) share the same CDP parameters.
 | Max supply | 21,000,000 | Unlimited | Unlimited |
 | Minter slots | 3 | 3 | 3 |
 
+### ENNI Supply Breakdown
+
+| Allocation | Amount | Source |
+|---|---|---|
+| Farming emissions | 20,000,000 | MasterChef (over 30 years) |
+| Premint | 1,000,000 | Minted at deployment |
+| **Total** | **21,000,000** | |
+
+ENNI uses a minter-role system with a maximum of 3 minter slots. Each minter has a hard cap on how much it can mint. The MasterChef contract holds one slot with a 20M budget. enUSD and enCHF are mintable by CDPs, DirectMint contracts, and any other authorized minters with no global supply cap.
+
+### Minter Configuration
+
+| Token | Minter 1 | Minter 2 | Minter 3 |
+|---|---|---|---|
+| ENNI | MasterChef | Dead address | Dead address |
+| enUSD | CDP (enUSD) | DirectMint | Savings (enUSD) |
+| enCHF | CDP (enCHF) | DirectMintGeneric | Savings (enCHF) |
+
+ENNI has two dead-address slots, meaning MasterChef is the only contract that will ever mint ENNI. This is enforced on-chain and cannot be changed without redeploying the token.
+
 ## MasterChef
 
 | Parameter | Value | Description |
 |---|---|---|
 | MAX_POOLS | 8 | Maximum number of farming pools |
-| MAX_CHEF_MINT | 20,000,000 ENNI | Total mintable by MasterChef |
-| Emission duration | 30 years | Full schedule in Token section |
+| MAX_CHEF_MINT | 20,000,000 ENNI | Total mintable by MasterChef over the full schedule |
+| Emission duration | 30 years | Uses 365-day years for calculation |
+| ACC_PRECISION | 1e12 | Accumulator scaling factor for reward math |
+
+### Emission Schedule
+
+| Period | Years | ENNI / Year | Total for Period |
+|---|---|---|---|
+| Phase 1 | 1–2 | 2,000,000 | 4,000,000 |
+| Phase 2 | 3–10 | 1,000,000 | 8,000,000 |
+| Phase 3 | 11–30 | 400,000 | 8,000,000 |
+| **Total** | | | **20,000,000** |
+
+Emissions are distributed across pools proportionally by `allocPoint`. A pool with `allocPoint = 300` out of a `totalAllocPoint = 1000` receives 30% of global emissions. Pool allocations can be changed by the owner at any time — `allocPoint` is a plain integer with no decimals, only the ratio matters.
+
+Once `mintedByChef` reaches `MAX_CHEF_MINT`, all farming rewards stop permanently.
 
 ## Rewards Vault
 
@@ -78,3 +145,5 @@ All current markets (enUSD, enCHF) share the same CDP parameters.
 |---|---|---|
 | Reward tokens | 3 | ENNI, WETH, enUSD |
 | Share ratio | 1:1 | Shares equal ENNI deposited |
+
+The vault receives redeem fees from EnniDirectMint (enUSD) and distributes them proportionally to ENNI stakers. Reward tokens accumulate passively — stakers can claim at any time. The vault does not have a lock period; ENNI can be deposited and withdrawn freely.
