@@ -33,6 +33,16 @@ Each feed has its own staleness threshold. A price older than its threshold is r
 | RedStone ETH/USD | 24 hours |
 | Translator (CHF/USD) | 24 hours |
 
+## Feed Addresses (Ethereum Mainnet)
+
+| Feed | Provider | Address |
+|---|---|---|
+| ETH/USD (primary) | Chainlink | [`0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419`](https://etherscan.io/address/0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419) |
+| ETH/USD (fallback) | RedStone | [`0x67F6838e58859d612E4ddF04dA396d6DABB66Dc4`](https://etherscan.io/address/0x67F6838e58859d612E4ddF04dA396d6DABB66Dc4) |
+| CHF/USD (translator) | Chainlink | [`0x449d117117838fFA61263B61dA6301AA2a88B13A`](https://etherscan.io/address/0x449d117117838fFA61263B61dA6301AA2a88B13A) |
+
+The ETH/USD feeds are shared by both the enUSD and enCHF oracles. The CHF/USD translator is only used by the enCHF oracle. The enUSD oracle has no translator — it reads ETH/USD directly.
+
 The CDP enforces its own 24-hour maximum age independently. Even if the oracle returns a cached price, the CDP will reject it if the timestamp is too old.
 
 ## Validation

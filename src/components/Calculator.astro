@@ -142,13 +142,13 @@ import Enni from "@assets/EnniNew.png";
           <span id="maker-cost" class="font-normal text-red-700">—</span>
         </div>
 
-        <!-- Liquity -->
+        <!-- Compound -->
         <div class="flex items-center justify-between text-sm">
           <span class="font-light text-neutral-800 inline-flex items-center gap-2">
-            <img src="/liquity.svg" alt="Liquity" class="w-5 h-5 rounded" />
-            Liquity v2 would charge (~3.8%)
+            <img src="/compound.svg" alt="Compound" class="w-5 h-5 rounded" />
+            Compound would charge (~4%)
           </span>
-          <span id="liquity-cost" class="font-normal text-red-700">—</span>
+          <span id="compound-cost" class="font-normal text-red-700">—</span>
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@ import Enni from "@assets/EnniNew.png";
   const liqBufferEl = document.getElementById("liq-buffer") as HTMLElement;
   const aaveCostEl = document.getElementById("aave-cost") as HTMLElement;
   const makerCostEl = document.getElementById("maker-cost") as HTMLElement;
-  const liquityCostEl = document.getElementById("liquity-cost") as HTMLElement;
+  const compoundCostEl = document.getElementById("compound-cost") as HTMLElement;
   const bigSavingsEl = document.getElementById("big-savings") as HTMLElement;
   const savingsSubtitleEl = document.getElementById("savings-subtitle") as HTMLElement;
   const minDebtWarningEl = document.getElementById("min-debt-warning") as HTMLElement;
@@ -289,8 +289,8 @@ manualInput.addEventListener('input', () => {
     // Compound interest: cost = principal * ((1 + rate)^years - 1)
     const aaveCost = borrowUsd * (Math.pow(1 + 0.04, years) - 1);
     const makerCost = borrowUsd * (Math.pow(1 + 0.04, years) - 1);
-    const liquityCost = borrowUsd * (Math.pow(1 + 0.038, years) - 1);
-    const avgSavings = (aaveCost + makerCost) / 2;
+    const compoundCost = borrowUsd * (Math.pow(1 + 0.04, years) - 1);
+    const avgSavings = (aaveCost + makerCost + compoundCost) / 3;
 
     ethDisplayEl.textContent = ethAmount + " ETH";
     ltvDisplayEl.textContent = Math.round(ltv * 100) + "%";
@@ -303,7 +303,7 @@ manualInput.addEventListener('input', () => {
 
     aaveCostEl.textContent = "$" + fmt(aaveCost);
     makerCostEl.textContent = "$" + fmt(makerCost);
-    liquityCostEl.textContent = "$" + fmt(liquityCost);
+    compoundCostEl.textContent = "$" + fmt(compoundCost);
 
     bigSavingsEl.textContent = "$" + fmt(avgSavings);
     savingsSubtitleEl.textContent = "saved over " + months + (months === 1 ? " month" : " months") + " vs ~4% interest";

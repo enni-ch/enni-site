@@ -1,0 +1,33 @@
+---
+title: "Risk Disclosure"
+section: "Reference"
+order: 17
+---
+
+ENNI smart contracts are provided under the UNLICENSED license and are fully public. The smart contracts are the only agreement. There are no warranties, no guarantees. Any loss is on you. Use at your own risk.
+
+## Dependencies
+
+ENNI contracts use battle-tested libraries from [OpenZeppelin](https://www.openzeppelin.com/contracts) and rely on third-party dependencies including:
+
+- [Chainlink](https://chain.link/) and [RedStone](https://redstone.finance/) oracle feeds for ETH pricing
+- [USDC](https://etherscan.io/token/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) (Circle), [USDT](https://etherscan.io/token/0xdAC17F958D2ee523a2206206994597C13D831ec7) (Tether), and [ZCHF](https://etherscan.io/token/0xB58E61C3098d85632Df34EecfB899A1Ed80921cB) (Frankencoin) as backing stablecoins
+- The Ethereum network itself
+
+These dependencies carry their own risks outside the protocol's control. Oracle feeds can go stale, stablecoins can depeg, and the Ethereum network can experience congestion or reorganizations.
+
+## Audits
+
+The protocol has been audited by [Hashlock](https://enni.ch/Hashlock-Audit.pdf) and [Blockbite](https://enni.ch/Blockbite-Audit.pdf). No audit eliminates all risk. Audits are a point-in-time review and do not guarantee the absence of bugs or vulnerabilities.
+
+## Immutability
+
+All core contracts are immutable. There are no admin keys, no governance, no upgrade mechanisms, and no pause functions. Once deployed, the protocol cannot be changed, fixed, or stopped by anyone. This is a feature, not a limitation - but it means that any bug that survives deployment is permanent.
+
+## No Guarantees
+
+The 5% savings APR is funded by the protocol's reserve surplus. There is no external revenue, no token emissions, and no speculative yield strategy backing it. The rate is fixed at the contract level and cannot be adjusted. If market conditions change significantly, the protocol cannot adapt.
+
+## Disclaimer
+
+This is not legal or financial advice. Do your own research.
